@@ -87,55 +87,51 @@ const TodoDetailPage = ({params}) => {
     }
 
     return (
-        <div className="flex justify-center">
-            <div className="w-1/3 border">
-                <div className="space-y-5">
-                    <div className="grid grid-cols-3 items-center">
-                        <Link href={`/todo`}>Back</Link>
-                        <h1 className="text-2xl font-bold">TODO LIST</h1>
-                    </div>
+        <div className="space-y-5">
+            <div className="grid grid-cols-3 items-center">
+                <Link href={`/todo`}>Back</Link>
+                <h1 className="text-2xl font-bold">TODO LIST</h1>
+            </div>
 
-                    <TodoInputSubmit
-                        value={inputItemState.itemName}
-                        onChange={(e) => setInputItemState({...inputItemState, itemName: e.target.value})}
-                        onSubmit={handleCreateItem}
-                    />
+            <TodoInputSubmit
+                value={inputItemState.itemName}
+                onChange={(e) => setInputItemState({...inputItemState, itemName: e.target.value})}
+                onSubmit={handleCreateItem}
+            />
 
-                    <div className="w-full space-y-3">
-                        {items && items.map((item, index) => (
-                            <div key={item.id} className="flex items-center w-full justify-between">
-                                <div className="flex items-center gap-2">
-                                    <input type="checkbox" onChange={() => handleUpdateItemStatus(item.id)}
-                                           checked={item.itemCompletionStatus} className="size-6"/>
-                                    <input
-                                        type="text"
-                                        value={renamingItem.id === item.id ? renamingItem.name : item.name}
-                                        onChange={(e) => setRenamingItem({
-                                            ...renamingItem,
-                                            name: e.target.value
-                                        })}
-                                        readOnly={renamingItem.id !== item.id}
-                                        className={renamingItem.id === item.id ? 'border-2 border-blue-500' : ''}
-                                    />
-                                </div>
-                                <div className="flex gap-2">
-                                    <Button onClick={() => handleSetRenamingItem(item)} color="blue" title="Rename"/>
-                                    {
-                                        renamingItem.id === item.id && (
-                                            <button
-                                                onClick={() => handleSaveRenamingItem()}
-                                                className="py-1 px-4 bg-green-500 rounded-4 text-white"
-                                            >
-                                                Save
-                                            </button>
-                                        )
-                                    }
-                                    <Button onClick={() => handleDeleteItem(item.id)} color="red" title="Delete"/>
-                                </div>
-                            </div>
-                        ))}
+            <div className="w-full space-y-3">
+                {items && items.map((item, index) => (
+                    <div key={item.id} className="flex items-center w-full justify-between">
+                        <div className="flex items-center gap-2">
+                            <input type="checkbox" onChange={() => handleUpdateItemStatus(item.id)}
+                                   checked={item.itemCompletionStatus} className="size-6"/>
+                            <input
+                                type="text"
+                                value={renamingItem.id === item.id ? renamingItem.name : item.name}
+                                onChange={(e) => setRenamingItem({
+                                    ...renamingItem,
+                                    name: e.target.value
+                                })}
+                                readOnly={renamingItem.id !== item.id}
+                                className={renamingItem.id === item.id ? 'border-2 border-blue-500' : ''}
+                            />
+                        </div>
+                        <div className="flex gap-2">
+                            <Button onClick={() => handleSetRenamingItem(item)} color="blue" title="Rename"/>
+                            {
+                                renamingItem.id === item.id && (
+                                    <button
+                                        onClick={() => handleSaveRenamingItem()}
+                                        className="py-1 px-4 bg-green-500 rounded-4 text-white"
+                                    >
+                                        Save
+                                    </button>
+                                )
+                            }
+                            <Button onClick={() => handleDeleteItem(item.id)} color="red" title="Delete"/>
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     )

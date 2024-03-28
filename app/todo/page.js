@@ -47,33 +47,29 @@ const TodoPage = () => {
     }
 
     return (
-        <div className="flex justify-center">
-            <div className="w-1/3 border">
-                <div className="space-y-5">
-                    <h1 className="text-center text-2xl font-bold">TODO LIST</h1>
+        <div className="space-y-5">
+            <h1 className="text-center text-2xl font-bold">TODO LIST</h1>
 
-                    <TodoInputSubmit
-                        value={inputTodoState.name}
-                        onChange={(e) => setInputTodoState({...inputTodoState, name: e.target.value})}
-                        onSubmit={handleCreateTodo}
-                    />
+            <TodoInputSubmit
+                value={inputTodoState.name}
+                onChange={(e) => setInputTodoState({...inputTodoState, name: e.target.value})}
+                onSubmit={handleCreateTodo}
+            />
 
-                    <div className="w-full space-y-3">
-                        {todos.map((todo, index) => (
-                            <div key={todo.id} className="flex items-center w-full justify-between">
-                                <h1>{index + 1}. {todo.name}</h1>
-                                <div className="flex gap-2">
-                                    <Link href={`/todo/${todo.id}`}
-                                          className="py-1 px-4 bg-blue-500 rounded-4 text-white">Detail</Link>
+            <div className="w-full space-y-3">
+                {todos.map((todo, index) => (
+                    <div key={todo.id} className="flex items-center w-full justify-between">
+                        <h1>{index + 1}. {todo.name}</h1>
+                        <div className="flex gap-2">
+                            <Link href={`/todo/${todo.id}`}
+                                  className="py-1 px-4 bg-blue-500 rounded-4 text-white">Detail</Link>
 
-                                    <button onClick={() => handleDeleteTodo(todo.id)}
-                                            className="py-1 px-4 bg-red-500 rounded-4 text-white">Delete
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
+                            <button onClick={() => handleDeleteTodo(todo.id)}
+                                    className="py-1 px-4 bg-red-500 rounded-4 text-white">Delete
+                            </button>
+                        </div>
                     </div>
-                </div>
+                ))}
             </div>
         </div>
     )

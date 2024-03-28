@@ -4,6 +4,17 @@ import Cookies from "js-cookie";
 const apiHost = process.env.NEXT_PUBLIC_API_HOST;
 const token = Cookies.get('bts_token')
 
+export const registerReq = async (inputState) => {
+    try {
+        const res = await axios.post(`${apiHost}/register`, inputState)
+
+        return res
+    } catch (e) {
+        return e
+    }
+
+}
+
 export const loginReq = async (inputState) => {
     try {
         const res = await axios.post(`${apiHost}/login`, inputState)
